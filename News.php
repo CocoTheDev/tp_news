@@ -34,27 +34,27 @@ class News
   }
 
   //Getters
-  public function getId()
+  public function id()
   {
     return $this->id;
   }
-  public function getAutor()
+  public function autor()
   {
     return $this->autor;
   }
-  public function getTitle()
+  public function title()
   {
     return $this->title;
   }
-  public function getContained()
+  public function contained()
   {
     return $this->contained;
   }
-  public function getDateCreation()
+  public function dateCreation()
   {
     return $this->dateCreation;
   }
-  public function getDateModification()
+  public function dateModification()
   {
     return $this->dateModifictation;
   }

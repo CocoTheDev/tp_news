@@ -1,0 +1,1 @@
+This is a training comming from: https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/1668165-tp-un-systeme-de-news
