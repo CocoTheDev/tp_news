@@ -2,20 +2,20 @@
 // Utilisation du cours sur l'injection de dépendance de OpenClassRoom (source:https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/1668103-les-design-patterns)
 
 // Interface for PDO query statement (SELECT, UPDATE, ...)
-interface iDB 
+interface DBInterface 
 {
   public function query($query);
 }
 
 // Interface for result of query statement (result from a ::FETCH_ASSOC)
-interface iResult
+interface ResultInterface
 {
   public function fetchAssoc();
 }
 
 
-// class for MyPDO users extends from PDO class, implement iDB interface for query request
-class MyPDO extends PDO implements iDB
+// class for MyPDO users extends from PDO class, implement DB interface for query request
+class MyPDO extends PDO implements DBInterface
 {
   public function query($query)
   {
@@ -23,7 +23,7 @@ class MyPDO extends PDO implements iDB
   }
 }
 
-class MyMySQLi extends MySQLi implements iDB
+class MyMySQLi extends MySQLi implements DBInterface
 {
   public function query($query)
   {
@@ -32,7 +32,7 @@ class MyMySQLi extends MySQLi implements iDB
 }
 
 
-class MyPDOStatement implements iResult
+class MyPDOStatement implements ResultInterface
 {
   protected $statement;
 
@@ -47,7 +47,7 @@ class MyPDOStatement implements iResult
   }
 }
 
-class MyMySQLiResult implements iResult
+class MyMySQLiResult implements ResultInterface
 {
   protected $statement;
 
@@ -67,7 +67,7 @@ class NewsManager
 {
   protected $dao;
 
-  public function __construct(iDB $dao)
+  public function __construct(DBInterface $dao)
   {
     $this->dao = $dao;
   }
@@ -76,9 +76,9 @@ class NewsManager
   {
     $req = $this->dao->query('SELECT id, autor, title, contained FROM news WHERE id ='.(int)$id);
 
-    if (!$req instanceof iResult)
+    if (!$req instanceof ResultInterface)
     {
-      throw new Exception ('The result of the request must be an object from iResult');
+      throw new Exception ('The result of the request must be an object from Result Interface');
     }
 
     return $req->fetchAssoc();

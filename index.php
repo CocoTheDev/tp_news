@@ -1,19 +1,23 @@
 <?php 
 
-echo "test";
+// Autoload classes
+/* function chargerClasse($classname)
+{
+  require $classname.'.php';
+}
+spl_autoload_register('chargerClasse'); */
 
-// Create Connection
+require 'NewsManager.php';
+
+// Connection infos
 $host="localhost"; 
 $root="root"; 
 $root_password="root"; // Password: MAC = "root" ; Linux = ""
 $dbname = "tp_news";
 
-
-
-
-$dao = new PDO("mysql:host=$host;dbname=$dbname", $root, $root_password);
+// Connection to data base
+$dao = new MyPDO("mysql:host=$host;dbname=$dbname", $root, $root_password);
 // $dao = new MyMySQLi($host, $root, $root_password);
-
 
 // Check connection
 if(! $dao )
@@ -26,12 +30,7 @@ else
 }
 
 
-// Autoload classes
-function chargerClasse($classname)
-{
-  require $classname.'.php';
-}
-spl_autoload_register('chargerClasse');
+
 
 
 $manager = new NewsManager($dao);
