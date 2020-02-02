@@ -91,7 +91,7 @@ class DBFactory
   
   public function getMysqlConnexionWithMySQLi()
   {
-    $db = new MySQLi($host, $root, $root_password, $dbname);
+    $db = new MySQLi($this->host(), $this->root(), $this->rootPassword(), $this->dbname());
     $this->checkConnection($db);
     return $db;
   }

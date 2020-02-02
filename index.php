@@ -5,7 +5,7 @@ require 'autoload.php';
 // Connection to data base
 // Password: MAC = "root" ; Linux = ""
 $dao = new DBFactory (['host'=>'localhost', 'dbname'=>'tp_news', 'root'=>'root', 'root_password'=>'root']);
-$dao->getMysqlConnexionWithPDO();
+$dao->getMysqlConnexionWithMySQLi();
 $manager = new NewsManager($db);
 
 
