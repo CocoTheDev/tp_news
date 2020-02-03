@@ -3,18 +3,19 @@ class DBFactory
 {
 
   private $host,
-            $dbname,
-            $root,
-            $root_password; // Password: MAC = "root" ; Linux = ""
+          $dbname,
+          $root,
+          $root_password; // Password: MAC = "root" ; Linux = ""
 
-
-  public function __construct(array $data)
+  public function __construct()
   {
-    $this->hydrate($data);
+    $this->hydrate();
   }
 
-  public function hydrate(array $data) 
+  public function hydrate() 
   {
+    $data = ['host'=>'localhost', 'dbname'=>'tp_news','root'=>'root', 'root_password'=>'root'];
+
     if (!empty($data)) 
     {
         foreach ($data as $key => $value) 
@@ -80,7 +81,7 @@ class DBFactory
 
 
 
-  public function getMysqlConnexionWithPDO()
+  public function getMysqlConnectionWithPDO()
   {
     $db = new PDO("mysql:host={$this->host()};dbname={$this->dbname()}", $this->root(), $this->rootPassword());
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -89,7 +90,7 @@ class DBFactory
     return $db;
   }
   
-  public function getMysqlConnexionWithMySQLi()
+  public function getMysqlConnectionWithMySQLi()
   {
     $db = new MySQLi($this->host(), $this->root(), $this->rootPassword(), $this->dbname());
     $this->checkConnection($db);

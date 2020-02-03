@@ -1,26 +1,13 @@
 <?php 
-// Utilisation du cours sur l'injection de dépendance de OpenClassRoom (source:https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/1668103-les-design-patterns)
 
-class NewsManager
+abstract class NewsManager
 {
-  protected $dao;
 
-  public function __construct(DBInterface $dao)
-  {
-    $this->dao = $dao;
-  }
+  abstract public function add();
+  abstract public function delete($id);
+  abstract public function update($id);
+  abstract public function get($id);
 
-  public function get($id)
-  {
-    $req = $this->dao->query('SELECT id, autor, title, contained FROM news WHERE id ='.(int)$id);
-
-    if (!$req instanceof ResultInterface)
-    {
-      throw new Exception ('The result of the request must be an object from Result Interface');
-    }
-
-    return $req->fetchAssoc();
-  }
 }
 
 
