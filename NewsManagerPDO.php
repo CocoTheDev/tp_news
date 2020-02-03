@@ -7,7 +7,7 @@ class NewsManagerPDO extends NewsManager
 
   public function __construct(PDO $db)
   {
-    $this->db = $bd;
+    $this->db = $db;
   }
 
 
@@ -15,8 +15,8 @@ class NewsManagerPDO extends NewsManager
   public function get($id)
   {
     $req = $this->db->query('SELECT id, autor, title, contained FROM news WHERE id ='.(int)$id);
-
-    return $req->fetchAssoc();
+    
+    return $req->fetchAll();
   }
 
   public function add()

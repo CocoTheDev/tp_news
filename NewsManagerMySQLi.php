@@ -15,7 +15,7 @@ class NewsManagerMySQLi extends NewsManager
   public function get($id)
   {
     $req = $this->db->query('SELECT id, autor, title, contained FROM news WHERE id ='.(int)$id);
-
+    
     return $req->fetch_assoc();
   }
 
