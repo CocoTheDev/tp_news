@@ -16,9 +16,9 @@ class News
 
   public function hydrate(array $data)
   {
-    if (!empty($donnees)) 
+    if (!empty($data)) 
     {
-      foreach ($donnees as $key => $value) 
+      foreach ($data as $key => $value) 
       {
         $method = 'set'.ucfirst($key);
         if (method_exists($this, $method))
@@ -56,7 +56,7 @@ class News
   }
   public function dateModification()
   {
-    return $this->dateModifictation;
+    return $this->dateModification;
   }
 
   //Setters
@@ -80,15 +80,16 @@ class News
     $contained = (string) $contained;
     $this->contained = $contained;
   }
-  public function setDateCreation($dateCreation)
+  public function setDateCreation()
   {
-    $dateCreation = (int) $dateCreation;
-    $this->dateCreation = $dateCreation;
+    $date = new DateTime();
+    $date->getTimestamp();
+    $this->dateCreation = $date;
   }
-  public function setDateModification($dateModifitcation)
+  public function setDateModification($dateModification)
   {
     $dateModification = (int) $dateModification;
-    $this->dateModification = $dateModifictation;
+    $this->dateModification = $dateModification;
   }
 
 

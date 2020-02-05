@@ -3,21 +3,12 @@
 abstract class NewsManager
 {
 
-  abstract public function add();
+  abstract protected function add(News $news);
+  abstract public function count();
   abstract public function delete($id);
-  abstract public function update($id);
-  abstract public function get($id);
+  abstract public function getList($start = -1, $limit = -1);
+  abstract public function getUnique($id);
+  abstract public function save(News $news);
+  abstract public function update(News $news);
 
 }
-
-
-/* CREATE TABLE `news` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `auteur` varchar(30) NOT NULL,
-  `titre` varchar(100) NOT NULL,
-  `contenu` text NOT NULL,
-  `dateAjout` datetime NOT NULL,
-  `dateModif` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) DEFAULT CHARSET=utf8; */
-
