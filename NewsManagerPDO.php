@@ -17,12 +17,12 @@ class NewsManagerPDO extends NewsManager
     try 
     {
       $this->db->exec("CREATE TABLE IF NOT EXISTS `news` (
-        `id` int(11) NOT NULL,
-        `autor` varchar(255) NOT NULL,
-        `title` varchar(255) NOT NULL,
-        `contained` text NOT NULL,
-        `dateCreation` int(11) NOT NULL,
-        `dateModification` int(11) DEFAULT NULL
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `autor` VARCHAR(30) NOT NULL,
+        `title` VARCHAR(30) NOT NULL,
+        `contained` TEXT NOT NULL,
+        `dateCreation` INT NOT NULL,
+        `dateModification` INT DEFAULT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
     } 
     catch (PDOException $e) 
@@ -35,7 +35,13 @@ class NewsManagerPDO extends NewsManager
 
   public function add(News $news)
   {
-
+  $req = $this->db->prepare('INSERT INTO News(autor, title, contained, dateCreation, dateModification) VALUES (:autor, :title, :contained, :dateCreation, :dateModification)');
+  $req->bindValue(':autor', $news->autor());
+  $req->bindValue(':title', $news->title());
+  $req->bindValue(':contained', $news->contained());
+  $req->bindValue(':dateCreation', $news->dateCreation());
+  $req->bindValue(':dateModification', $news->dateModification());
+  $req->execute();
   }
 
   public function count()

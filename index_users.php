@@ -23,9 +23,9 @@ else
 }
 
 
-$news = new News(['autor'=>'moi', 'title'=>'Mes vacances aux soleil', 'contained'=>'petit recap', 'dateModification'=> NULL]);
+$news = new News(['autor'=>'moi', 'title'=>'Mes vacances aux soleil', 'contained'=>'petit recap']);
 echo '<br>Step 1, add news, print news<br>';
 $manager->add($news);
 echo '<br>Step 2, print news if it existe on DB:<br>';
-print_r($manager->getUnique(3));
+print_r($manager->getUnique(1));
 echo '<br>DONE<br>';

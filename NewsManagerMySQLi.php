@@ -17,12 +17,12 @@ class NewsManagerMySQLi extends NewsManager
     try 
     {
       $this->db->query("CREATE TABLE IF NOT EXISTS `news` (
-        `id` int(11) NOT NULL,
-        `autor` varchar(255) NOT NULL,
-        `title` varchar(255) NOT NULL,
-        `contained` text NOT NULL,
-        `dateCreation` int(11) NOT NULL,
-        `dateModification` int(11) DEFAULT NULL
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `autor` VARCHAR(30) NOT NULL,
+        `title` VARCHAR(30) NOT NULL,
+        `contained` TEXT NOT NULL,
+        `dateCreation` INT NOT NULL,
+        `dateModification` INT NOT NULL DEFAULT NULL
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
     } 
     catch (PDOException $e) 

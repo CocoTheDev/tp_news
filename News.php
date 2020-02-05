@@ -11,6 +11,7 @@ class News
 
   public function __construct(array $data)
   {
+    $this->setDateCreation();
     $this->hydrate($data);
   }
 
@@ -83,8 +84,7 @@ class News
   public function setDateCreation()
   {
     $date = new DateTime();
-    $date->getTimestamp();
-    $this->dateCreation = $date;
+    $this->dateCreation = $date->getTimestamp();
   }
   public function setDateModification($dateModification)
   {
